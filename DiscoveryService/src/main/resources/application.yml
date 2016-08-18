@@ -1,0 +1,11 @@
+server:
+  port: 8761
+
+eureka:
+  environment: dev1
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 10000

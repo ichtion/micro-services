@@ -1,0 +1,15 @@
+server:
+  port: 9401
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: eligibility_01
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+spring:
+  application:
+    name: EligibilityService
