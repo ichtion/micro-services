@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -11,14 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableDiscoveryClient
 @RestController
 public class EligibilityServiceApplication {
+    @Value("${eligibility.response}")
+    private String eligibilityResponse;
 
-	public static void main(String[] args) {
-		SpringApplication.run(EligibilityServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EligibilityServiceApplication.class, args);
+    }
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String isEligible() {
-		return "eligibility_01";
-	}
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String isEligible() {
+        return eligibilityResponse;
+    }
 }
