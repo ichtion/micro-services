@@ -1,6 +1,8 @@
 package com.example;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +29,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @EnableHystrix
 public class ReportabilityServiceApplication {
+	private Logger logger = LoggerFactory.getLogger(ReportabilityServiceApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(ReportabilityServiceApplication.class, args);
@@ -39,24 +42,30 @@ public class ReportabilityServiceApplication {
 	private RestTemplate restTemplate;
 
 	@RequestMapping(value = "/tradeId/{id}", method = GET)
-    @HystrixCommand(fallbackMethod = "hystrixEligibiltyFallbackMethod")
-	public @ResponseBody String getReport(@PathVariable("id") String tradeId) {
+	@HystrixCommand(fallbackMethod = "hystrixEligibiltyFallbackMethod")
+	public
+	@ResponseBody
+	String getReport(@PathVariable("id") String tradeId) {
+		logger.info("Get report for tradeId {}", tradeId);
 		ResponseEntity<String> response = restTemplate.getForEntity("http://EligibilityService/", String.class);
 		return tradeId + " :: " + response.getBody();
 	}
 
 	private String hystrixEligibiltyFallbackMethod(String tradeId) {
-	    return tradeId + " :: eligible-hystrix";
-    }
+		return tradeId + " :: eligible-hystrix";
+	}
 
-	@RequestMapping(value = "/services",method = GET)
-	public @ResponseBody
+	@RequestMapping(value = "/services", method = GET)
+	public
+	@ResponseBody
 	List<String> discover() {
 		return discoveryClient.getServices();
 	}
 
 	@RequestMapping(value = "/service/{serviceName}", method = GET)
-	public @ResponseBody List<ServiceInstance> discoverService(@PathVariable("serviceName") String serviceName) {
+	public
+	@ResponseBody
+	List<ServiceInstance> discoverService(@PathVariable("serviceName") String serviceName) {
 		return discoveryClient.getInstances(serviceName);
 	}
 
