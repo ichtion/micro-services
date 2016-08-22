@@ -10,4 +10,4 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
 
-eligibility.response: "eligibility_01"
+#eligibility.response: "eligibility_01"
