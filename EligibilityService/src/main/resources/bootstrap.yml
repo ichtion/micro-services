@@ -3,4 +3,6 @@ spring:
     name: EligibilityService
   cloud:
     config:
-      uri: http://localhost:9600
+      discovery:
+        enabled: true
+        service-id: configurationservice
