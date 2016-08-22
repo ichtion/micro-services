@@ -1,0 +1,10 @@
+server:
+  port: 9600
+spring:
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: ["classpath:/configuration"]
