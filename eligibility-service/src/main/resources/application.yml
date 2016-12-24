@@ -11,3 +11,7 @@ eureka:
     lease-expiration-duration-in-seconds: 2
 
 eligibility.response: "eligibility_01"
+spring:
+  sleuth:
+    sampler:
+      percentage: 1.0
