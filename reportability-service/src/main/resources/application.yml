@@ -17,3 +17,5 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+  zipkin:
+    base-url: http://localhost:9700
