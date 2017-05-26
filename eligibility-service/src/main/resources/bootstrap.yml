@@ -1,3 +1,20 @@
+instanceId: ${random.int[0,1000]}
+autoconfigured.eligibility.response: static_eligibility
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: eligibility_${instanceId}
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}
+
 spring:
   application:
     name: EligibilityService

@@ -1,15 +1,18 @@
 server:
-  port: 9500
+  port: 9001
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:7001/eureka
     cache-refresh-executor-exponential-back-off-bound: 2
   instance:
     instance-id: reportability_01
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
+management:
+  security:
+    enabled: false
 
 spring:
   application:
@@ -18,4 +21,4 @@ spring:
     sampler:
       percentage: 1.0
   zipkin:
-    base-url: http://localhost:9700
+    base-url: http://localhost:7005

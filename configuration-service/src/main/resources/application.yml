@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 7004
 spring:
   profiles:
     active: native
@@ -8,3 +8,6 @@ spring:
       server:
         native:
           search-locations: "classpath:/demo-configuration"
+management:
+  security:
+    enabled: false
