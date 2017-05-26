@@ -1,0 +1,22 @@
+ZZZZZZZZZZZZZZZZZZZ  iiii                     kkkkkkkk             iiii
+Z:::::::::::::::::Z i::::i                    k::::::k            i::::i
+Z:::::::::::::::::Z  iiii                     k::::::k             iiii
+Z:::ZZZZZZZZ:::::Z                            k::::::k
+ZZZZZ     Z:::::Z  iiiiiiippppp   ppppppppp    k:::::k    kkkkkkkiiiiiiinnnn  nnnnnnnn
+        Z:::::Z    i:::::ip::::ppp:::::::::p   k:::::k   k:::::k i:::::in:::nn::::::::nn
+       Z:::::Z      i::::ip:::::::::::::::::p  k:::::k  k:::::k   i::::in::::::::::::::nn
+      Z:::::Z       i::::ipp::::::ppppp::::::p k:::::k k:::::k    i::::inn:::::::::::::::n
+     Z:::::Z        i::::i p:::::p     p:::::p k::::::k:::::k     i::::i  n:::::nnnn:::::n
+    Z:::::Z         i::::i p:::::p     p:::::p k:::::::::::k      i::::i  n::::n    n::::n
+   Z:::::Z          i::::i p:::::p     p:::::p k:::::::::::k      i::::i  n::::n    n::::n
+ZZZ:::::Z     ZZZZZ i::::i p:::::p    p::::::p k::::::k:::::k     i::::i  n::::n    n::::n
+Z::::::ZZZZZZZZ:::Zi::::::ip:::::ppppp:::::::pk::::::k k:::::k   i::::::i n::::n    n::::n
+Z:::::::::::::::::Zi::::::ip::::::::::::::::p k::::::k  k:::::k  i::::::i n::::n    n::::n
+Z:::::::::::::::::Zi::::::ip::::::::::::::pp  k::::::k   k:::::k i::::::i n::::n    n::::n
+ZZZZZZZZZZZZZZZZZZZiiiiiiiip::::::pppppppp    kkkkkkkk    kkkkkkkiiiiiiii nnnnnn    nnnnnn
+                           p:::::p
+                           p:::::p
+                          p:::::::p
+                          p:::::::p
+                          p:::::::p
+                          ppppppppp
