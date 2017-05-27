@@ -6,6 +6,7 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    service-url.defaultZone: http://localhost:7001/eureka/
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 10000
