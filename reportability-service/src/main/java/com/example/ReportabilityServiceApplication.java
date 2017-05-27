@@ -43,9 +43,7 @@ public class ReportabilityServiceApplication {
 
 	@RequestMapping(value = "/tradeId/{id}", method = GET)
 	@HystrixCommand(fallbackMethod = "hystrixEligibiltyFallbackMethod")
-	public
-	@ResponseBody
-	String getReport(@PathVariable("id") String tradeId) {
+	public @ResponseBody String getReport(@PathVariable("id") String tradeId) {
 		logger.info("Get report for tradeId {}", tradeId);
 		ResponseEntity<String> response = restTemplate.getForEntity("http://EligibilityService/", String.class);
 		return tradeId + " :: " + response.getBody();
@@ -56,16 +54,12 @@ public class ReportabilityServiceApplication {
 	}
 
 	@RequestMapping(value = "/services", method = GET)
-	public
-	@ResponseBody
-	List<String> discover() {
+	public @ResponseBody List<String> discover() {
 		return discoveryClient.getServices();
 	}
 
 	@RequestMapping(value = "/service/{serviceName}", method = GET)
-	public
-	@ResponseBody
-	List<ServiceInstance> discoverService(@PathVariable("serviceName") String serviceName) {
+	public @ResponseBody List<ServiceInstance> discoverService(@PathVariable("serviceName") String serviceName) {
 		return discoveryClient.getInstances(serviceName);
 	}
 
