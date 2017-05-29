@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Map;
 
+import static java.util.Arrays.asList;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @SpringBootApplication
@@ -51,6 +51,14 @@ public class ReportabilityServiceApplication {
 
 	private String hystrixEligibiltyFallbackMethod(String tradeId) {
 		return tradeId + " :: eligible-hystrix";
+	}
+
+	@RequestMapping(value = "/tradeIds/{ids}", method = GET)
+	public @ResponseBody List<String> getReportForTradeIds(@PathVariable("ids") String tradeIds) {
+		logger.info("Get report for tradeIds {}", tradeIds);
+		List<String> listOftradeIds = asList(tradeIds.split(","));
+		CheckTradesEligibilityCommand checkTradesEligibilityCommand = new CheckTradesEligibilityCommand(listOftradeIds, restTemplate);
+		return checkTradesEligibilityCommand.execute();
 	}
 
 	@RequestMapping(value = "/services", method = GET)
