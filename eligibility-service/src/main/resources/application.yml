@@ -1,9 +1,22 @@
+server:
+  port: 0
+
+instanceId: ${random.int[0,1000]}
+autoconfigured.eligibility.response: static_eligibility
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}
+---
 spring:
-  sleuth:
-    sampler:
-      percentage: 1.0
-  zipkin:
-    base-url: http://localhost:7005
-management:
-  security:
-    enabled: false
+  profiles: instance-1
+server:
+  port: 8002
+instanceId: 1
+autoconfigured.eligibility.response: static_eligibility
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}
+---
+spring:
+  profiles: instance-2
+server:
+  port: 8003
+instanceId: 2
+autoconfigured.eligibility.response: static_eligibility
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}
