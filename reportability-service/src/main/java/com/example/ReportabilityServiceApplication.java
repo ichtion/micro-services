@@ -43,14 +43,14 @@ public class ReportabilityServiceApplication {
 
 	@RequestMapping(value = "/tradeId/{id}", method = GET)
 	@HystrixCommand(fallbackMethod = "hystrixEligibiltyFallbackMethod")
-	public @ResponseBody String getReport(@PathVariable("id") String tradeId) {
+	public @ResponseBody ReportabilityResponse getReport(@PathVariable("id") String tradeId) {
 		logger.info("Get report for tradeId {}", tradeId);
-		String response = eligibilityService.eligibility();
-		return tradeId + " :: " + response;
+		Eligibility eligibility = eligibilityService.eligibility(tradeId);
+		return new ReportabilityResponse(tradeId, eligibility);
 	}
 
-	private String hystrixEligibiltyFallbackMethod(String tradeId) {
-		return tradeId + " :: eligible-hystrix";
+	private ReportabilityResponse hystrixEligibiltyFallbackMethod(String tradeId) {
+		return new ReportabilityResponse(tradeId, new Eligibility(tradeId, "eligible-hystrix"));
 	}
 
 	@RequestMapping(value = "/tradeIds/{ids}", method = GET)

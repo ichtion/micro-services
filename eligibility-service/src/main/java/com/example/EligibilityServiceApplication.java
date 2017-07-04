@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.Tracer;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +31,8 @@ public class EligibilityServiceApplication {
         SpringApplication.run(EligibilityServiceApplication.class, args);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String isEligible() throws InterruptedException {
+    @RequestMapping(value = "/eligibility/{tradeId}", method = RequestMethod.GET)
+    public Eligibility isEligible(@PathVariable String tradeId) throws InterruptedException {
         logger.info("========> My message");
 
         tracer.addTag("myTagName", "1");
@@ -42,7 +43,6 @@ public class EligibilityServiceApplication {
         TimeUnit.MILLISECONDS.sleep(100);
         tracer.close(myOwnSpan);
 
-        return eligibilityResponse;
+        return new Eligibility(tradeId, eligibilityResponse);
     }
-
 }
