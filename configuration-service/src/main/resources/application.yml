@@ -7,7 +7,7 @@ spring:
     config:
       server:
         native:
-          search-locations: "classpath:/demo-configuration"
+          search-locations: "classpath:/configuration"
 management:
   security:
     enabled: false
