@@ -10,6 +10,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @EnableEurekaClient
 @RestController
 @EnableHystrix
+@EnableFeignClients
 public class ReportabilityServiceApplication {
 	private Logger logger = LoggerFactory.getLogger(ReportabilityServiceApplication.class);
 
@@ -35,18 +37,16 @@ public class ReportabilityServiceApplication {
 		SpringApplication.run(ReportabilityServiceApplication.class, args);
 	}
 
-	@Autowired
-	private DiscoveryClient discoveryClient;
-
-	@Autowired
-	private RestTemplate restTemplate;
+	@Autowired EligibilityService eligibilityService;
+	@Autowired private DiscoveryClient discoveryClient;
+	@Autowired private RestTemplate restTemplate;
 
 	@RequestMapping(value = "/tradeId/{id}", method = GET)
 	@HystrixCommand(fallbackMethod = "hystrixEligibiltyFallbackMethod")
 	public @ResponseBody String getReport(@PathVariable("id") String tradeId) {
 		logger.info("Get report for tradeId {}", tradeId);
-		ResponseEntity<String> response = restTemplate.getForEntity("http://EligibilityService/", String.class);
-		return tradeId + " :: " + response.getBody();
+		String response = eligibilityService.eligibility();
+		return tradeId + " :: " + response;
 	}
 
 	private String hystrixEligibiltyFallbackMethod(String tradeId) {
